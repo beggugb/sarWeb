@@ -1,6 +1,6 @@
 import { userService } from "../services";
 import { history } from "../helpers";
-
+import {toastr} from 'react-redux-toastr'
 export const userActions = {  
   login,
   logout,
@@ -11,12 +11,12 @@ function login(user) {
   return (dispatch) => {    
     userService
       .login(user)
-      .then((response) => {                        
-        if(response.user){          
+      .then((response) => {                         
+        if(response.user.usuario){          
           dispatch(dlogin(response));
           history.push("/admin");          
         }else{
-          
+           toastr.error('Error', response.user.message)
         }                
       })
       .catch((err) => {  

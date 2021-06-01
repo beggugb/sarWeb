@@ -11331,6 +11331,23 @@ textarea.form-control {
   border-radius: 10px;
   
 }
+.perfilPreviewc{
+  margin-top: 5px;
+  height: 100px;  
+  width: 300px;
+  padding: 3px;   
+  border: solid 1px #c1c1c1;
+  border-radius: 5%;
+  text-align: center;
+}
+.perfilPreviewc img{
+  height: 90px;
+  width: 120px;
+  border: solid 1px #c1c1c1;
+  border-radius: 10%;
+  text-align: center;
+ } 
+
 .perfilPreview{
   margin-top: 5px;
   height: 120px;  
@@ -12621,6 +12638,8 @@ textarea.form-control {
   min-height: 480px;  
 }
 
+
+
 /*------------------------------------------------------------------------*/
 .descompanias{
    border: solid 1px #eaeaea;  
@@ -12793,6 +12812,15 @@ textarea.form-control {
   z-index: 0;
 }
 
+.vproductos{  
+  border: solid 1px #c1c1c1;
+  padding-left: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 0.7rem;  
+  height: 250px;  
+  z-index: 0;
+}
 
 .cbuscar{
   width: 140px;  

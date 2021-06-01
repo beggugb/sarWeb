@@ -13,7 +13,7 @@ const initialState = {
       valor:'',
       productoId:'',
       clienteId:'',
-      usuarioId:'',
+      usuarioId:'',            
       Cliente:{
         id:'',
         nombres:'',

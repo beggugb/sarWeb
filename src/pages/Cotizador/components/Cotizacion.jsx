@@ -39,13 +39,12 @@ function Cotizacion ({pky, getComponent}) {
          Enviar cotización
         </Col>          
       </Row>  
+                                             
       <Row>       
-        <Col md="12" className="vcotizacionf"> 
-         <Cotiza />
+        <Col md="3" className="vcompanias"> 
+          <Cotiza />
         </Col> 
-      </Row>                                               
-      <Row>       
-        <Col md="12" className="vcompanias"> 
+        <Col md="9" className="vcompanias"> 
          <ListasCompanias/>         
          <p className="descoberturas">Coberturas</p>
          <ListasCoberturas/>         

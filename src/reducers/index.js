@@ -20,6 +20,8 @@ import { productoclausulas } from "./productoclausulas.reducers";
 import { productocoberturas } from "./productocoberturas.reducers";
 import { tasas } from "./tasas.reducers";
 import { tipos } from "./tipos.reducers";
+import { marcas } from "./marcas.reducers";
+import { modelos } from "./modelos.reducers";
 
 import { cotizaciones } from "./cotizaciones.reducers";
 
@@ -31,6 +33,8 @@ const rootReducer = combineReducers({
   cotizaciones,
   coberturas,
   clausulas,
+  marcas,
+  modelos,
   ramos,
   usuarios,  
   productoclausulas,

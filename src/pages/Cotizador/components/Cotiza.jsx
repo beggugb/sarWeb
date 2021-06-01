@@ -5,18 +5,25 @@ import {
   Row,
   Col , Form, FormGroup, Label, Input, Button 
 } from "reactstrap"
+import { apiErp } from "../../../helpers";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
-import TiposSelect from '../../Tipos/components/TiposSelect'
+
 import ClienteBuscar from '../../Clientes/components/ClienteBuscar'
+
+import MarcasSelect from '../../Marcas/components/MarcasSelect'
+import ModelosSelect from '../../Modelos/components/ModelosSelect'
 
 function Cotiza () {  
   const dispatch = useDispatch()   
   const pitem = useSelector(state => state.productos.item) 
-  const citem = useSelector(state => state.clientes.item)  
-  const item = useSelector(state => state.tipos.item)    
+  const citem = useSelector(state => state.clientes.item)    
+  const item = useSelector(state => state.modelos.item) 
+  const {habilitado} = useSelector(state => state.cotizaciones) 
+  let usu = JSON.parse(localStorage.getItem('user'))
+
   const [monto,setMonto] = useState()
 
   
@@ -38,6 +45,8 @@ const submitHandle = event => {
 
 
   const handleSave = () => {   
+    if(citem)
+    {
     let fecha = new Date() 
     let dating ={}   
     dating.orden = 1
@@ -45,36 +54,52 @@ const submitHandle = event => {
     dating.ivigencia = fecha
     dating.fvigencia = fecha
     dating.valor = monto
-    dating.tipoId = item.id
+    dating.tipoId = item.tipoId
     dating.productoId = pitem.id
     dating.clienteId = citem.id
+    dating.modelo = item.filename
+    dating.usuarioId = usu.id
     dispatch(cotizacionActions.createList('COTIZACIONES_ADD','cotizaciones',dating))   
     dispatch({type:'COTIZACIONES_RESET'})
     dispatch({type:'CLIENTES_RESET'})     
     dispatch({type:'TASAS_RESET'})     
     setMonto(0)    
     dispatch({type:'COTIZACIONES_HABILITADO',est:false})
-  }             
+  }  }       
+
+  
   return (    
-  	<div className="herramientas">     
-    <Row>
-      <Col md={11}>
-      <Form onSubmit={ submitHandle}>              
-        <div className="sub-form">              
+    <>
+  	<Row>
+    <Col className="herramientas">         
+      <Form onSubmit={ submitHandle}>                                  
+        <div className="sub-form">
+        <h6>Datos cotización</h6>     
           <Row>
-            <Col md="1" className="subcajas">
-              <Label>Tipo :</Label>
-            </Col>                    
             <Col md="3" className="subcajas">
+              <Label>Marca :</Label>
+            </Col>                    
+            <Col md="9" className="subcajas">
               <FormGroup>                          
-                <TiposSelect/>
+                <MarcasSelect/>
               </FormGroup>
             </Col>
-
-            <Col md="1" className="subcajas">
+          </Row>
+          <Row>
+            <Col md="3" className="subcajas">
+              <Label>Modelo :</Label>
+            </Col>                    
+            <Col md="9" className="subcajas">
+              <FormGroup>                          
+                <ModelosSelect/>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col md="3" className="subcajas">
               <Label>Valor :</Label>
             </Col>                    
-            <Col md="2" className="subcajas">
+            <Col md="9" className="subcajas">
               <FormGroup>                          
                 <Input
                   id="monto"
@@ -86,17 +111,9 @@ const submitHandle = event => {
                 />
               </FormGroup>
             </Col>
-
-             <Col md="1" className="subcajas">
-              <Label>Cliente :</Label>
-            </Col>                    
-            <Col md="3" className="subcajas">
-              <FormGroup>                          
-                <ClienteBuscar/>
-              </FormGroup>
-            </Col>
-
-            <Col md="1" className="subcajas">
+          </Row>           
+          <Row>
+            <Col md="12" className="subcajas">
               <Button 
                type="submit"
                className="btn-md btn-info">              
@@ -105,22 +122,49 @@ const submitHandle = event => {
             </Col>            
           </Row>               
         </div>           
-      </Form> 
-      </Col>
+      </Form>       
+    </Col>  
+  </Row>
+   
+  {item.filename ?   
+  <Row>
+    <Col className="herramientas">                            
+      <div className="sub-form">
+        <img          
+          className="img-perfil text-center"
+          src={apiErp + "/static/images/modelos/md/" + item.filename}
+        /> 
+      </div>
+    </Col>  
+  </Row>   
+  :null}  
+  {habilitado ?   
+  <>
+  <Row>
+    <Col className="herramientas">                            
+      <div className="sub-form">
+        <ClienteBuscar className="mb-3"/>  
 
-      <Col md={1}>
-        <div className="sub-form">
-            <Button 
+      </div>
+    </Col>  
+  </Row>  
+  <Row className="mt-3">
+    <Col className="herramientas">                            
+      <div className="sub-form">
+        <Button 
               type="button"
-              className="btn-md btn-success"
+              className={citem.id ? "btn-md btn-success" : "btn-md btn-disabled" } 
               onClick={() => {handleSave()}}
             >              
-               <FontAwesomeIcon icon={faSave} />  
-              </Button>
-        </div> 
-      </Col>                                   
-    </Row>                                     
-    </div>  
+            <FontAwesomeIcon icon={faSave} />  
+            {''} Guardar cotización
+            </Button> 
+      </div>
+    </Col>  
+  </Row>
+  </>  
+  :null}  
+  </>
   );
 }
 

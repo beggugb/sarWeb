@@ -21,6 +21,10 @@ import ClausulasView from '../Clausulas/ClausulasView'
 
 import TiposView from '../Tipos/TiposView'
 
+import MarcasView from '../Marcas/MarcasView'
+
+import ModelosView from '../Modelos/ModelosView'
+
 
 function ConfiguracionView () {     
   const dispatch = useDispatch()
@@ -48,6 +52,12 @@ function ConfiguracionView () {
       break;
       case 'tipos':
       setComponent(<TiposView/>)      
+      break; 
+      case 'marcas':
+      setComponent(<MarcasView/>)      
+      break; 
+      case 'modelos':
+      setComponent(<ModelosView/>)      
       break;      
       default:
         console.log('nan')
@@ -121,6 +131,25 @@ function ConfiguracionView () {
             onClick={() => { getComponent('tipos', '7')}}>
           <FontAwesomeIcon icon={faChevronDown} />   
           {' '} Tipos
+          </NavLink>  
+        </NavItem>
+
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '8' })}
+            onClick={() => { getComponent('marcas', '8')}}>
+          <FontAwesomeIcon icon={faChevronDown} />   
+          {' '} Marcas
+          </NavLink>  
+        </NavItem>
+
+
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '9' })}
+            onClick={() => { getComponent('modelos', '9')}}>
+          <FontAwesomeIcon icon={faChevronDown} />   
+          {' '} Modelos
           </NavLink>  
         </NavItem>     
 

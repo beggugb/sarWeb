@@ -3,8 +3,21 @@ import { authHeader, apiErp } from "../helpers";
 export const imagenService = {
   uploadCliente,
   uploadCompania,
-  uploadEmpresa
+  uploadEmpresa,
+  uploadModelo,
 };
+
+function uploadModelo(payload, dato, datoId) {
+  const requestOptions = {
+    method: "PUT",
+    headers: { ...authHeader() },
+    body: dato,
+  };
+  return fetch(
+    `${apiErp}/${payload}/modelo/item/${datoId}`,
+    requestOptions
+  ).then(handleResponse);
+}
 
 function uploadEmpresa(payload, dato, datoId) {
   const requestOptions = {

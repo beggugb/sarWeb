@@ -26,10 +26,10 @@ function CotizacionsTable ({getComponent}) {
   const dispatch = useDispatch()  
   const [mount, setMount] = useState(false)
   const {data, total, pagina, paginas, modalView } = useSelector(state => state.cotizaciones)  
-  
+  let usu = JSON.parse(localStorage.getItem('user'))
   
   const makeHttpRequestWithPage = useCallback((page, num) =>{
-    dispatch(crudActions.getData('COTIZACIONES_DATA','cotizaciones',page, num,'createdAt','DESC'))  
+    dispatch(crudActions.getData('COTIZACIONES_DATA','cotizaciones',usu.id,usu.rolId,page, num))  
   },[dispatch])
 
   useEffect(() =>{    
@@ -49,7 +49,8 @@ function CotizacionsTable ({getComponent}) {
       dispatch(cotizacionActions.getItem('cotizaciones',item.id))
     }
     
-    dispatch({type:'COTIZACIONES_VIEW',view:est})        
+    dispatch({type:'COTIZACIONES_VIEW',view:est})   
+    dispatch({type:'COTIZACIONES_HABILITADO',est:true})     
         
   };  
 
@@ -57,6 +58,7 @@ function CotizacionsTable ({getComponent}) {
       dispatch(cotizacionActions.sendCotizacion('cotizaciones',item.id))          
         
   };  
+  
   return (    
     <>
     <div className="table-single">             

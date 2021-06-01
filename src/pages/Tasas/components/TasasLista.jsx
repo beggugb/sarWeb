@@ -9,10 +9,10 @@ import {
 
 function TasasLista () {          
 
-  const { data } = useSelector(state => state.tasas)  
+  const { data } = useSelector(state => state.tasas)
+  const { habilitado } = useSelector(state => state.cotizaciones)  
 
-  return (    
-    <>
+  const component =  <>
     <Row className="mt-2">            
     <Col md="3" className="tasaco">Prima Contado</Col>
     {data.map((item) => (                                 
@@ -38,6 +38,11 @@ function TasasLista () {
     ))}                
     </Row>
     </>
+
+  return (    
+   <>
+    {habilitado ? component : null}
+   </>
   );
 }
 

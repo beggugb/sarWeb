@@ -2,7 +2,7 @@ import React,{useState}  from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { productoActions,crudActions } from '../../../actions'
 import {  
-  FormGroup, Input 
+  FormGroup, Input, Label 
 } from "reactstrap"
 
 
@@ -28,11 +28,13 @@ function ClienteBuscar () {
      
   return (    
       <>
-      <FormGroup>                          
+      <FormGroup>                
+      <Label>Cliente :</Label>          
         <Input
           id="nombre"
           type="text"
-          name="nombre"                                                        
+          name="nombre"      
+          placeholder="...nombre cliente"                                                  
           value={it || ''}
           onChange={changeHandler}                                                   
           onClick={() => {setIt('')}}
