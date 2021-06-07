@@ -15,6 +15,7 @@ import { faPlusCircle, faList } from "@fortawesome/free-solid-svg-icons";
 
 import CompaniasTable from './components/CompaniasTable'
 import CompaniaForm from './components/CompaniaForm'
+import CompaniaSearch from './components/CompaniaSearch'
  
 
 function CompaniasView () {     
@@ -27,9 +28,10 @@ function CompaniasView () {
     if(activeTab !== tab) setActiveTab(tab);
     switch(name){
       case 'lista':
-      setComponent(<CompaniasTable getComponent={getComponent}/>)      
+      setComponent(<><CompaniaSearch/><CompaniasTable getComponent={getComponent}/></>)      
       break;
       case 'formulario':
+      dispatch({type:'COMPANIAS_RESET_ITEM'});
       setComponent(<CompaniaForm/>)
       break;
       case 'editar':
@@ -48,11 +50,8 @@ function CompaniasView () {
       getComponent('lista','1',1)
       console.log('cargaCompanias')      
    }
-    return () =>{             
-        dispatch(crudActions.setReset('COMPANIAS_RESET'))               
-        console.log('descargaCompanias')      
-    };
-  }, [getComponent, mount, dispatch]);
+    
+  }, []);
   
   return (
     <>       

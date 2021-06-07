@@ -8,22 +8,7 @@ import ProductosList from '../../Productos/components/ProductosList'
 
 import { useCallback } from 'react';
 
-function ProductosDetalle ({getComponent}) {          
-  const dispatch = useDispatch()  
-  const [mount, setMount] = useState(false)  
- 
-  /*const makeHttpRequestWithPage = useCallback((page, num, key) =>{
-    dispatch(productoActions.getListDetalle('PRODUCTOS_LISTA','productos',key))  
-  },[dispatch])
-
-  useEffect(() =>{    
-    if(!mount) {
-      setMount(true);
-      makeHttpRequestWithPage(1,12,1);
-    }    
-  }, [dispatch, makeHttpRequestWithPage, mount]);*/
-
-    
+function ProductosDetalle ({getComponent}) {              
   return (    
     <>
     <RamosList/>

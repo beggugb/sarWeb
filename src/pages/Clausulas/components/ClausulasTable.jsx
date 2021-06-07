@@ -22,22 +22,27 @@ function ClausulasTable ({getComponent}) {
     dispatch(crudActions.getData('CLAUSULAS_DATA','clausulas', page, num,'label','ASC'))  
   },[dispatch])
 
-  useEffect(() =>{    
-    if(!mount) {
-      setMount(true);
-      makeHttpRequestWithPage(1,12);
-    }
-     return () =>{            
-        /*dispatch(crudActions.getReset('CLIENTES_RESET'))*/
-    };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
-
   const delHandler = (pky) => {               
     dispatch(crudActions.deleteList('CLAUSULAS_DATA','clausulas',pky))            
   }
   const itemHandler = (pky) => {                   
     dispatch(crudActions.getItem('CLAUSULAS_ITEM','clausulas',pky))
   }
+
+
+
+
+  useEffect(() =>{    
+    if(!mount) {
+      setMount(true);
+      makeHttpRequestWithPage(1,12);
+    }
+     return () =>{            
+        dispatch({type:'CLAUSULAS_RESET_DATA'})  
+    };
+  }, []);
+
+  
 
 
   return (    

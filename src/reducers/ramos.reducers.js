@@ -42,11 +42,24 @@ export function ramos(state = initialState, action) {
             paginas: action.response.paginas,
             total: action.response.total
           };
+       case "RAMOS_RESET_DATA":
+          return {
+            ...state,
+            data: [],
+            pagina: 0,
+            paginas: 0,
+            total: 0
+          };    
       case "RAMOS_LISTA":
             return {
               ...state,
               data: action.response
-            };                
+            };   
+      case "RAMOS_RESET_LISTA":
+            return {
+              ...state,
+              lista: []
+            };                    
       case "RAMOS_RESET":
         return {
           ...state,

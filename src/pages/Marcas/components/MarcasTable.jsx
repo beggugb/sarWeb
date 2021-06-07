@@ -22,22 +22,24 @@ function MarcasTable ({getComponent}) {
     dispatch(crudActions.getData('MARCAS_DATA','marcas', page, num,'nombre','ASC'))  
   },[dispatch])
 
-  useEffect(() =>{    
-    if(!mount) {
-      setMount(true);
-      makeHttpRequestWithPage(1,12);
-    }
-     return () =>{            
-        /*dispatch(crudActions.getReset('CLIENTES_RESET'))*/
-    };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
-
   const delHandler = (pky) => {               
     dispatch(crudActions.deleteList('MARCAS_DATA','marcas',pky))            
   }
   const itemHandler = (pky) => {                   
     dispatch(crudActions.getItem('MARCAS_ITEM','marcas',pky))
   }
+
+  useEffect(() =>{    
+    if(!mount) {
+      setMount(true);
+      makeHttpRequestWithPage(1,12);
+    }
+     return () =>{            
+      dispatch({type:'MARCAS_RESET_DATA'})    
+    };
+  }, []);
+
+
 
 
   return (    

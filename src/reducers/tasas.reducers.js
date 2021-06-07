@@ -70,7 +70,15 @@ export function tasas(state = initialState, action) {
         return {
           ...state,
           item: initialState.item
-        };  
+        }; 
+      case "TASAS_RESET_DATA":
+        return {
+          ...state,
+          data: [],
+          pagina: 0,
+          paginas: 0,
+          total: 0
+        };   
       default:
         return state;
     }

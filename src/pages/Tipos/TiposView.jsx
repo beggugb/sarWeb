@@ -6,13 +6,6 @@ import TiposTable from '../Tipos/components/TiposTable'
 import TipoForm from './components/TipoForm'
 
 function TiposView () {     
-  const dispatch = useDispatch()
-  
-  useEffect(() =>{        
-    return () =>{             
-        dispatch(crudActions.setReset('TIPOS_RESET'))               
-    };
-  }, [dispatch]);
   
   return (
     <>         

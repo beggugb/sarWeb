@@ -4,10 +4,23 @@ export const imagenActions = {
   uploadCliente,
   uploadCompania,
   uploadEmpresa,
-  uploadModelo
+  uploadModelo,
+  uploadAgente
 };
 
 /*--------------------------------------------------------------------*/
+function uploadAgente(xredux, payload, data, datoId) {
+  return (dispatch) => {    
+    imagenService
+      .uploadAgente(payload, data, datoId)
+      .then((response) => {       
+       toastr.success(payload, 'Imagen Cargada')  
+      })
+      .catch((err) => {        
+       toastr.error(payload, 'Error')  
+      });
+  };
+}
 function uploadEmpresa(xredux, payload, data, datoId) {
   return (dispatch) => {    
     imagenService

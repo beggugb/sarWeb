@@ -22,22 +22,24 @@ function CoberturasTable ({getComponent}) {
     dispatch(crudActions.getData('COBERTURAS_DATA','coberturas', page, num,'label','ASC'))  
   },[dispatch])
 
-  useEffect(() =>{    
-    if(!mount) {
-      setMount(true);
-      makeHttpRequestWithPage(1,12);
-    }
-     return () =>{            
-        /*dispatch(crudActions.getReset('CLIENTES_RESET'))*/
-    };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
-
   const delHandler = (pky) => {               
     dispatch(crudActions.deleteList('COBERTURAS_DATA','coberturas',pky))            
   }
   const itemHandler = (pky) => {                   
     dispatch(crudActions.getItem('COBERTURAS_ITEM','coberturas',pky))
   }
+
+  useEffect(() =>{    
+    if(!mount) {
+      setMount(true);
+      makeHttpRequestWithPage(1,12);
+    }
+      return () =>{             
+        dispatch({type:'COBERTURAS_RESET_DATA'})        
+    };
+  }, []);
+
+  
 
 
   return (    

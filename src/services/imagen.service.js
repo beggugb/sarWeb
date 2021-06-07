@@ -5,8 +5,20 @@ export const imagenService = {
   uploadCompania,
   uploadEmpresa,
   uploadModelo,
+  uploadAgente
 };
 
+function uploadAgente(payload, dato, datoId) {
+  const requestOptions = {
+    method: "PUT",
+    headers: { ...authHeader() },
+    body: dato,
+  };
+  return fetch(
+    `${apiErp}/${payload}/agente/item/${datoId}`,
+    requestOptions
+  ).then(handleResponse);
+}
 function uploadModelo(payload, dato, datoId) {
   const requestOptions = {
     method: "PUT",

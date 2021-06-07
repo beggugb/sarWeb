@@ -27,9 +27,9 @@ function RamosList ({getComponent}) {
       makeHttpRequestWithPage('RAMOS_LISTA','ramos');
     }
      return () =>{            
-        dispatch(crudActions.setReset('RAMOS_RESET'))
+        dispatch({type:'RAMOS_RESET_LISTA'})  
     };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
+  }, []);
 
 
  const add = (key) => {  

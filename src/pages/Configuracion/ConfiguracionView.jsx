@@ -15,16 +15,11 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import EmpresaForm from '../Configuracion/components/EmpresaForm'
 import CompaniasView from '../Companias/CompaniasView'
 import RamosView from '../Ramos/RamosView'
-
 import CoberturasView from '../Coberturas/CoberturasView'
 import ClausulasView from '../Clausulas/ClausulasView'
-
 import TiposView from '../Tipos/TiposView'
-
 import MarcasView from '../Marcas/MarcasView'
-
 import ModelosView from '../Modelos/ModelosView'
-
 
 function ConfiguracionView () {     
   const dispatch = useDispatch()
@@ -69,11 +64,8 @@ function ConfiguracionView () {
     if(!mount) {
       setMount(true);
       getComponent('datos','1')      
-   }
-    return () =>{             
-        /*dispatch(crudActions.getReset('CLIENTES_RESET'))       */        
-    };
-  }, [getComponent, mount, dispatch]);
+   }    
+  }, []);
   
   return (
     <div className="content">     
@@ -152,17 +144,6 @@ function ConfiguracionView () {
           {' '} Modelos
           </NavLink>  
         </NavItem>     
-
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === '3' })}
-            onClick={() => { getComponent('usuarios', '3')}}>
-          <FontAwesomeIcon icon={faChevronDown} />   
-          {' '} Usuarios
-          </NavLink>  
-        </NavItem>
-
-
 
       </Nav>
       </Col>

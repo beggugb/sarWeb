@@ -1,7 +1,7 @@
 const initialState = {
     clientes: [],    
-    cajas: [],    
-    membresias: [],    
+    cotizaciones: [],
+    polizas:[],    
     data: [],    
     pagina: 0,
     paginas: 0,
@@ -22,20 +22,20 @@ export function informes(state = initialState, action) {
           desde: action.desde,
           hasta: action.hasta
         };    
-      case "INFORMES_MEMBRESIAS":
+      case "INFORMES_COTIZACIONES":
         return {          
           ...state,
           detalle: action.response.detalle,
-          membresias: action.response.data,
+          cotizaciones: action.response.data,
           total: action.response.data.total,      
           desde: action.desde,
           hasta: action.hasta
         };    
-      case "INFORMES_CAJAS":
+      case "INFORMES_POLIZAS":
         return {          
           ...state,
           detalle: action.response.detalle,
-          cajas: action.response.data,
+          polizas: action.response.data,
           total: action.response.data.total,      
           desde: action.desde,
           hasta: action.hasta
@@ -44,8 +44,8 @@ export function informes(state = initialState, action) {
         return {
           ...state,
           clientes: [],          
-          membresias:[],
-          cajas:[],
+          polizas:[],
+          cotizaciones:[],
           pagina: 0,
           paginas: 0,
           total: 0,

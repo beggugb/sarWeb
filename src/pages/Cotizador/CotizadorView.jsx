@@ -47,10 +47,9 @@ function CotizadorView () {
       console.log('cargaProductos')      
    }
     return () =>{             
-        dispatch(crudActions.setReset('COTIZADOR_RESET'))               
-        console.log('descargaClientes')      
+        dispatch(crudActions.setReset('COTIZADOR_RESET'))                     
     };
-  }, [getComponent, mount, dispatch]);
+  }, []);
 
     
   return (

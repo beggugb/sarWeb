@@ -24,9 +24,9 @@ function CompaniaSelect ({getComponent}) {
       makeHttpRequestWithPage('COMPANIAS_LISTA','companias');
     }
      return () =>{            
-        dispatch(crudActions.setReset('COMPANIAS_RESET'))
+        dispatch({type:'COMPANIAS_RESET'})
     };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
+  }, []);
    
   return (    
     <>        

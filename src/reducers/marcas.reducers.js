@@ -28,7 +28,7 @@ export function marcas(state = initialState, action) {
             total: action.response.total,
             item: initialState.item
         };
-      case "MARCAS_ITEM":
+      case "MARCAS_SET_ITEM":
           return {
             ...state,
             item: action.response
@@ -55,6 +55,14 @@ export function marcas(state = initialState, action) {
           paginas: 0,
           total: 0
         };
+      case "MARCAS_RESET_DATA":
+        return {
+          ...state,          
+          data: [],
+          pagina: 0,
+          paginas: 0,
+          total: 0
+        };  
       default:
         return state;
     }

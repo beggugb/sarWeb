@@ -54,12 +54,8 @@ function ClientesView () {
       setMount(true);
       getComponent('lista','1',1)
       console.log('cargaProductos')      
-   }
-    return () =>{             
-        dispatch(crudActions.setReset('PRODUCTOS_RESET'))               
-        console.log('descargaClientes')      
-    };
-  }, [getComponent, mount, dispatch]);
+   }    
+  }, []);
 
     
   return (

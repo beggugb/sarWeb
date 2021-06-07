@@ -50,7 +50,20 @@ export function companias(state = initialState, action) {
           return {
             ...state,
             items: action.response            
-          };                
+          }; 
+      case "COMPANIAS_RESET_DATA":
+          return {
+            ...state,
+            data: [],
+            pagina: 0,
+            paginas: 0,
+            total: 0
+          };  
+      case "COMPANIAS_RESET_ITEM":
+          return {
+            ...state,
+            item: initialState.item
+          };                     
       case "COMPANIAS_RESET":
         return {
           ...state,

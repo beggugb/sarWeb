@@ -7,22 +7,12 @@ import {
 } from "reactstrap"
 
 
-
-import ListasCompanias from '../../ProductosCompanias/components/ListasCompanias'
-import TasasLista from '../../Tasas/components/TasasLista'
+import TasasCompaniaListas from '../../Tasas/components/TasasCompaniaListas'
 
 function CotizacionView () {                    
   const dispatch = useDispatch()
   const { item } = useSelector(state => state.cotizaciones)  
 
-  useEffect(() =>{        
-   
-    return () =>{             
-        dispatch(crudActions.setReset('TASAS_RESET'))
-        dispatch(crudActions.setReset('PRODUCTOSCOMPANIA_RESET'))
-        dispatch({type:'COTIZACIONES_HABILITADO',est:false})                       
-    };
-  }, [dispatch]);
 
   return (    
   	<div className="vproductos">	
@@ -35,9 +25,8 @@ function CotizacionView () {
         </Col> 
       </Row>                                                     
       <Row>       
-        <Col md="12" className="vcompanias"> 
-         <ListasCompanias/>                  
-         <TasasLista/>         
+        <Col md="12" className="vcompanias">          
+         <TasasCompaniaListas/>         
         </Col> 
       </Row>              
     </div>  

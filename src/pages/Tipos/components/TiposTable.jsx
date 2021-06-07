@@ -22,22 +22,26 @@ function TiposTable ({getComponent}) {
     dispatch(crudActions.getData('TIPOS_DATA','tipos', page, num,'nombre','ASC'))  
   },[dispatch])
 
+   const delHandler = (pky) => {               
+    dispatch(crudActions.deleteList('TIPOS_DATA','tipos',pky))            
+  }
+  const itemHandler = (pky) => {                   
+    dispatch(crudActions.getItem('TIPOS_ITEM','tipos',pky))
+  }
+
+
+
   useEffect(() =>{    
     if(!mount) {
       setMount(true);
       makeHttpRequestWithPage(1,12);
     }
      return () =>{            
-        /*dispatch(crudActions.getReset('CLIENTES_RESET'))*/
+       dispatch({type:'TIPOS_RESET_DATA'})    
     };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
+  }, []);
 
-  const delHandler = (pky) => {               
-    dispatch(crudActions.deleteList('TIPOS_DATA','tipos',pky))            
-  }
-  const itemHandler = (pky) => {                   
-    dispatch(crudActions.getItem('TIPOS_ITEM','tipos',pky))
-  }
+ 
 
 
   return (    

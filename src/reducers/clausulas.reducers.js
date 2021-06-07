@@ -46,7 +46,15 @@ export function clausulas(state = initialState, action) {
             return {
               ...state,
               data: action.response
-            };                
+            }; 
+      case "CLAUSULAS_RESET_DATA":
+          return {
+            ...state,
+            data: [],
+            pagina: 0,
+            paginas: 0,
+            total: 0
+          };                       
       case "CLAUSULAS_RESET":
         return {
           ...state,

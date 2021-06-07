@@ -47,13 +47,10 @@ function ClientesView () {
     if(!mount) {
       setMount(true);
       getComponent('lista','1',1)
-      console.log('cargaClientes')      
-   }
-    return () =>{             
-        dispatch(crudActions.setReset('CLIENTES_RESET'))               
-        console.log('descargaClientes')      
-    };
-  }, [getComponent, mount, dispatch]);
+      console.log('carga clientes')
+      
+   }    
+  }, []);
   
   return (
     <div className="content">     

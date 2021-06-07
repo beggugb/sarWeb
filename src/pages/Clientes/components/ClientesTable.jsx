@@ -7,7 +7,7 @@ import {
   } from "reactstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+
 
 import {    
   faEdit,
@@ -31,8 +31,11 @@ function ClientesTable ({getComponent}) {
     if(!mount) {
       setMount(true);
       makeHttpRequestWithPage(1,12);
-    }    
-  }, [dispatch, makeHttpRequestWithPage, mount]);
+    }   
+     return () =>{             
+        dispatch({type:'CLIENTES_RESET_DATA'})        
+    }; 
+  }, []);
 
     
   return (    
@@ -61,12 +64,7 @@ function ClientesTable ({getComponent}) {
                       <td>
                         <Button className="btn btn-success btn-xs" onClick={() => {getComponent('editar','2',item.id)}} >
                           <FontAwesomeIcon icon={faEdit} />
-                        </Button>
-                        <Link to={`/admin/membresia/${item.id}`}>
-                           <Button className={"btn btn-warning btn-xs"}>
-                              <FontAwesomeIcon icon={faTags} />
-                           </Button>
-                        </Link>
+                        </Button>                        
                       </td>
                     </tr>  
                     ))}

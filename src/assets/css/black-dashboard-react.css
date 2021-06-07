@@ -3211,7 +3211,7 @@ button.close {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 550px;
+    max-width: 600px;
     margin: 1rem auto; }
   .modal-dialog-centered {
     min-height: calc(100% - (1.75rem * 2)); }
@@ -11587,6 +11587,7 @@ textarea.form-control {
   min-height: 450px;  
   padding: 10px;
   font-size: 0.75rem;
+  margin: 5px;
 }   
 
 .card-cliente{
@@ -12635,7 +12636,7 @@ textarea.form-control {
 .vcompanias{  
   border: solid 1px #eaeaea;  
   font-size: 0.7rem;    
-  min-height: 480px;  
+  min-height: 215px;  
 }
 
 
@@ -12644,15 +12645,25 @@ textarea.form-control {
 .descompanias{
    border: solid 1px #eaeaea;  
    margin-bottom: 2px;
+   width: 150px;
+   border-radius: 5px;
+   background-color: #fff;
 }
 .descompanias:hover{
    border: solid 1px #1b88da;
    margin-bottom: 2px;
+   background-color: #4d4d4d;
 }
 
 .descompanias:active{
    border: solid 3px #1b88da;
    margin-bottom: 2px;
+   background-color: #4d4d4d;
+}
+.descompanias:focus{
+   border: solid 3px #1b88da;
+   margin-bottom: 2px;
+   background-color: #4d4d4d;
 }
 
 .descompanias img{   
@@ -12784,6 +12795,23 @@ textarea.form-control {
   border-radius: 5px;
 }
 
+.tasacom{   
+  border: solid 1px #eaeaea;       
+  color: #fff;   
+  text-align: center;
+  border-radius: 5px;
+}
+.tasacom img{   
+  border: solid 1px #eaeaea;       
+  height: 90px;
+  width: 110px;
+}
+
+.check{
+  color: #0aae0b;
+  margin-left: 8px;
+} 
+
 .tasacr{   
   border: solid 1px #eaeaea;   
   font-size: 1rem;      
@@ -12823,7 +12851,8 @@ textarea.form-control {
 }
 
 .cbuscar{
-  width: 140px;  
+  border: solid 2px #c1c1c1;     
+  width: 210px;  
   position:absolute;
   z-index: 1;
   background-color: #fff;
@@ -12833,7 +12862,7 @@ textarea.form-control {
 
 .cbuscar p{
   border-bottom: solid 1px #c1c1c1;     
-  color: #4d4d4d;  
+  color: #000;  
 }
 
 .cbuscar p:hover{  
@@ -12862,4 +12891,102 @@ textarea.form-control {
 .vcompan{
   border: solid 2px #c1c1c1;
   padding-left: 10px;
+}
+
+.vpolizas{  
+  border: solid 1px #eaeaea;
+  padding-left: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 0.7rem;  
+  height: 450px;  
+  z-index: 0;
+}
+
+.vpoliza{  
+  border: solid 1px #eaeaea;  
+  font-size: 0.7rem;      
+}
+
+.vpoliza h6{    
+  font-size: 0.7rem;
+  margin: 2px;
+  border-radius: 2px;
+  background-color: #1a82d0;
+  padding: 5px;
+  color: #eaeaea;     
+}
+
+.viewpassword{
+  font-size: 1.4rem;
+  color: #fd5d93;    
+  margin-top: 3px;
+}
+
+.viewtext{
+  font-size: 1.4rem;  
+  color: #0aae0b;  
+  margin-top: 3px;
+}
+
+.vpolizas{  
+  border: solid 1px #c1c1c1;
+  padding-left: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 0.7rem;    
+  z-index: 0;
+  height: 600px;  
+  overflow-y: auto;
+  border-radius: 5px;
+
+}
+
+.repPoliza{  
+  margin-top: 5px;
+  height: 150px;
+  text-align: center;
+}
+
+.repPoliza p{  
+  margin: 0;
+  padding: 0;
+}
+
+.repTerminos{
+  border: solid 1px #eaeaea;  
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.repTerminos h5{  
+  text-align: left;
+  padding-left: 5px;
+  background-color: #eaeaea;
+}
+
+.table-terminos{  
+}
+
+.table-terminos tbody > tr > td{  
+  font-size: 0.63rem;
+}
+.table-terminos thead > tr> th{  
+  font-size: 0.63rem;
+  background-color: #eaeaea;
+  color: #4d4d4d;
+}
+
+.repNota{
+  border: solid 1px #eaeaea;  
+  text-align: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.repNota h5{  
+  text-align: left;
+  padding-left: 5px;
+  background-color: #eaeaea;
 }

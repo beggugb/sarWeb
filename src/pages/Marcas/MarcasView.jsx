@@ -6,14 +6,7 @@ import MarcasTable from '../Marcas/components/MarcasTable'
 import MarcaForm from './components/MarcaForm'
 
 function MarcasView () {     
-  const dispatch = useDispatch()
-  
-  useEffect(() =>{        
-    return () =>{             
-        dispatch(crudActions.setReset('MARCAS_RESET'))               
-    };
-  }, [dispatch]);
-  
+
   return (
     <>         
     <MarcaForm/>

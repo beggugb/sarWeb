@@ -45,7 +45,15 @@ export function tipos(state = initialState, action) {
             return {
               ...state,
               data: action.response
-            };                
+            };   
+      case "TIPOS_RESET_DATA":
+        return {
+          ...state,          
+          data: [],
+          pagina: 0,
+          paginas: 0,
+          total: 0
+        };                   
       case "TIPOS_RESET":
         return {
           ...state,

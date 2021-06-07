@@ -22,20 +22,20 @@ function RamosSelect ({getComponent}) {
     dispatch(crudActions.getLis(xredux, payload))  
   },[dispatch])
 
+  const changeHandler = event => {    
+    let io = event ? event.value: 0    
+    dispatch(crudActions.changeValue('RAMOS_CHANGE','id',io))     
+   }
+
   useEffect(() =>{    
     if(!mount) {
       setMount(true);
       makeHttpRequestWithPage('RAMOS_LISTA','ramos');
     }
      return () =>{            
-        dispatch(crudActions.setReset('RAMOS_RESET'))
+        dispatch({type:'RAMOS_RESET'})
     };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
-
-  const changeHandler = event => {    
-    let io = event ? event.value: 0    
-    dispatch(crudActions.changeValue('RAMOS_CHANGE','id',io))     
-   }
+  }, []);
  
   return (    
     <>

@@ -63,6 +63,19 @@ export function productos(state = initialState, action) {
           paginas: 0,
           total: 0
         };
+      case "PRODUCTOS_RESET_ITEM":
+        return {
+          ...state,
+          item: initialState.item
+        };  
+      case "PRODUCTOS_RESET_DATA":
+        return {
+          ...state,          
+          data: [],
+          pagina: 0,
+          paginas: 0,
+          total: 0
+        };  
       default:
         return state;
     }

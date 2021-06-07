@@ -142,8 +142,7 @@ function CalendarTask(){
       setMount(true);
       makeHttpRequestWithPage('TAREAS_DATA','tareas');      
     }
-     return () =>{            
-        /*dispatch(crudActions.getReset('TAREAS_RESET'))      */
+     return () =>{                    
     };
   }, [dispatch, mount, makeHttpRequestWithPage]);
 

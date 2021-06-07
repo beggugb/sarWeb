@@ -13,7 +13,8 @@ const initialState = {
       valor:'',
       productoId:'',
       clienteId:'',
-      usuarioId:'',            
+      usuarioId:'', 
+      contratado:false,           
       Cliente:{
         id:'',
         nombres:'',
@@ -82,12 +83,24 @@ export function cotizaciones(state = initialState, action) {
         return {
           ...state,
           item: initialState.item,
-          data: [],
-       
+          data: [],       
           pagina: 0,
           paginas: 0,
           total: 0
         };
+      case "COTIZACIONES_RESET_ITEM":
+        return {
+          ...state,
+          item: initialState.item
+        };  
+      case "COTIZACIONES_RESET_DATA":
+        return {
+          ...state,          
+          data: [],       
+          pagina: 0,
+          paginas: 0,
+          total: 0
+        };  
       default:
         return state;
     }

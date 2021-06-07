@@ -21,20 +21,22 @@ function MarcasList ({getComponent}) {
     dispatch(crudActions.getLis(xredux, payload))  
   },[dispatch])
 
+  const add = (key) => {  
+   dispatch(productoActions.getListDetalle('PRODUCTOS_LISTA','productos',key)) 
+  }
+
   useEffect(() =>{    
     if(!mount) {
       setMount(true);
       makeHttpRequestWithPage('MARCAS_LISTA','marcas');
     }
      return () =>{            
-        dispatch(crudActions.setReset('MARCAS_RESET'))
+       dispatch({type:'MARCAS_RESET_DATA'})
     };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
+  }, []);
 
 
- const add = (key) => {  
-   dispatch(productoActions.getListDetalle('PRODUCTOS_LISTA','productos',key)) 
- }
+
 
    
 return (    

@@ -11,10 +11,9 @@ function Dashboard () {
    
   return (
     <div className="content">     
-    <div className="main-contenido">
-    
+    <div className="main-contenido">    
       <Row>
-        <Col md="8">
+        <Col md="12">
           <Card>
           <CardHeader>
             <CardTitle>Tareas</CardTitle>                                    
@@ -23,24 +22,7 @@ function Dashboard () {
                <Calendar/>   
             </CardBody>
           </Card>
-        </Col>
-        <Col md="4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Mensajes</CardTitle>                                    
-            </CardHeader>
-            <CardBody>                  
-            </CardBody>
-          </Card>
-          <Card>
-          <CardHeader>
-            <CardTitle>Procesos</CardTitle>                                    
-            </CardHeader>
-            <CardBody>
-                  
-            </CardBody>
-          </Card>
-        </Col>
+        </Col>              
       </Row>
     </div>
   </div> 

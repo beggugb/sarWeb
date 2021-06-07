@@ -59,7 +59,20 @@ export function clientes(state = initialState, action) {
           return {
             ...state,
             lista: []
-          };                    
+          };  
+      case "CLIENTES_RESET_DATA":
+          return {
+            ...state,
+            data: [],
+            pagina: 0,
+            paginas: 0,
+            total: 0
+          }; 
+      case "CLIENTES_RESET_ITEM":
+          return {
+            ...state,
+            item: initialState.item
+          };                        
       case "CLIENTES_RESET":
         return {
           ...state,

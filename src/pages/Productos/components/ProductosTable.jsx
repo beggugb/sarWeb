@@ -30,14 +30,6 @@ function ProductosTable ({getComponent}) {
     dispatch(crudActions.getData('PRODUCTOS_DATA','productos',page, num,'nombre','ASC'))  
   },[dispatch])
 
-  useEffect(() =>{    
-    if(!mount) {
-      setMount(true);
-      makeHttpRequestWithPage(1,12);
-    }    
-  }, [dispatch, makeHttpRequestWithPage, mount]);
-
-
   const toggleModalView = (item) => {    
     let est = modalView === true ? false : true;    
     
@@ -45,9 +37,18 @@ function ProductosTable ({getComponent}) {
       dispatch(productoActions.getItem('productos',item.id))
       dispatch(productoActions.getItems('catalogos',item.id))
     }    
-    dispatch(productoActions.viewModal('PRODUCTOS_VIEW',est))        
-        
+    dispatch(productoActions.viewModal('PRODUCTOS_VIEW',est)) 
   };
+
+   useEffect(() =>{    
+    if(!mount) {
+      setMount(true);
+      makeHttpRequestWithPage(1,12);
+    }    
+      return () =>{             
+        dispatch({type:'PRODUCTOS_RESET_DATA'})        
+     };
+  }, []);
 
     
   return (    

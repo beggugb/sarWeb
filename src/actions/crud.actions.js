@@ -5,7 +5,9 @@ export const crudActions = {
   getList,
   getListItems,
   getLis,
-  getItem,  
+  getItem,
+  getItemModelo,
+  getItemPoliza,  
   getData,
   /*POST*/
   postList,
@@ -22,16 +24,41 @@ export const crudActions = {
   setReset
 };
 
+function getItemPoliza(payload, pky) {  
+  return (dispatch) => {
+    crudService
+      .getItem(payload, pky)
+      .then((response) => {                              
+        console.log(response)
+        dispatch(gitem('POLIZAS_SET_ITEM', response.result.polizas));
+        dispatch(gitem('POLIZAS_COBERTURAS_DATA', response.result.coberturas));
+        dispatch(gitem('POLIZAS_CLAUSULAS_DATA', response.result.clausulas));
+        dispatch(gitem('NOTAS_SET_ITEM', response.result.nota));
+        dispatch(gitem('PAGOS_DATA', response.result.pagos));
+      })
+      .catch((err) => {
+                
+      });
+  };
+}
+
+
+export function gitem(xredux, result) {  
+  return {
+    type: xredux,
+    response: result
+  };
+}
+
 /*---------------------------------------------------------------*/
 function getData(xredux, payload, page,num,prop,orden) {  
   return (dispatch) => {
     crudService
       .getData(payload, page,num,prop,orden)
-      .then((response) => {                  
+      .then((response) => {                      
         dispatch(dgetList(xredux, response.result));
       })
-      .catch((err) => {
-        
+      .catch((err) => {        
         
       });
   };
@@ -61,7 +88,8 @@ function getLis(xredux, payload) {
   return (dispatch) => {
     crudService
       .getLis(payload)
-      .then((response) => {               
+      .then((response) => {  
+        console.log(response)             
         dispatch(dgetList(xredux, response.result));
       })
       .catch((err) => {
@@ -91,6 +119,20 @@ export function dgetList(xredux, result) {
 }
 
 /*---------------------------------------------------------------*/
+function getItemModelo(xredux, payload, pky) {  
+  return (dispatch) => {
+    crudService
+      .getItem(payload, pky)
+      .then((response) => {                              
+        dispatch(gitem('MARCAS_SET_ITEM', response.result.Marca));
+        dispatch(gitem('MODELOS_SET_ITEM', response.result));
+      })
+      .catch((err) => {
+                
+      });
+  };
+}
+
 function getItem(xredux, payload, pky) {  
   return (dispatch) => {
     crudService
@@ -113,12 +155,7 @@ function getItem(xredux, payload, pky) {
   };
 }
 
-export function gitem(xredux, result) {  
-  return {
-    type: xredux,
-    response: result
-  };
-}
+
 
 /*---------------------------------------------------------------*/
 function postList(xredux, payload, dato) {  
@@ -151,7 +188,8 @@ function createList(xredux, payload, dato) {
       .createList(payload, dato)
       .then((response) => {                
         if(response !== undefined){
-          dispatch(dpostList(xredux, response.result));                
+          dispatch(dpostList(xredux, response.result));    
+          toastr.success(payload, 'Dato creado')             
         }        
       })
       .catch((err) => {
@@ -166,7 +204,7 @@ function createUnit(xredux, payload, dato) {
   return (dispatch) => {
     crudService
       .createUnit(payload, dato)
-      .then((response) => {                        
+      .then((response) => {                         
         dispatch(dcreateUnit(xredux, response.result));      
         toastr.success(payload, 'Dato creado')   
       })

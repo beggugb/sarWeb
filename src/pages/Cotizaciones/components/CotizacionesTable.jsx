@@ -14,10 +14,13 @@ import Moment from 'react-moment'
 import {     
   faTimes,
   faFilePdf,
-  faPaperPlane
+  faPaperPlane,
+  faCheck,
+  faCheckDouble
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from '../../../components/Navigations/Pagination'
 import CotizacionView from './CotizacionView'
+import CotizacionPolizaView from './CotizacionPolizaView'
 
 
 import { useCallback } from 'react';
@@ -27,37 +30,42 @@ function CotizacionsTable ({getComponent}) {
   const [mount, setMount] = useState(false)
   const {data, total, pagina, paginas, modalView } = useSelector(state => state.cotizaciones)  
   let usu = JSON.parse(localStorage.getItem('user'))
+  const [component,setComponent] = useState()
   
   const makeHttpRequestWithPage = useCallback((page, num) =>{
     dispatch(crudActions.getData('COTIZACIONES_DATA','cotizaciones',usu.id,usu.rolId,page, num))  
   },[dispatch])
+     
 
-  useEffect(() =>{    
-    if(!mount) {
-      setMount(true);
-      makeHttpRequestWithPage(1,12);
-    }    
-  }, [dispatch, makeHttpRequestWithPage, mount]);
-
+  const toggleModalView = (item,tipo) => {    
     
-
-  const toggleModalView = (item) => {    
-    let est = modalView === true ? false : true;    
-    
-    if(item){
-   
+    let est = modalView === true ? false : true;        
+    if(item && tipo === 'pdf'){   
       dispatch(cotizacionActions.getItem('cotizaciones',item.id))
+      setComponent(<CotizacionView/>)
     }
-    
-    dispatch({type:'COTIZACIONES_VIEW',view:est})   
-    dispatch({type:'COTIZACIONES_HABILITADO',est:true})     
-        
+    if(item && tipo === 'poliza'){   
+      dispatch(cotizacionActions.getItem('cotizaciones',item.id))
+      setComponent(<CotizacionPolizaView/>)
+    }    
+    dispatch({type:'COTIZACIONES_VIEW',view:est})       
+
   };  
 
   const sendCotizacion = (item) => {        
       dispatch(cotizacionActions.sendCotizacion('cotizaciones',item.id))          
         
   };  
+
+  useEffect(() =>{    
+    if(!mount) {
+      setMount(true);
+      makeHttpRequestWithPage(1,12);
+    } 
+    return () =>{             
+        dispatch({type:'COTIZACIONES_RESET_DATA'})        
+    };   
+  }, []);
   
   return (    
     <>
@@ -66,8 +74,9 @@ function CotizacionsTable ({getComponent}) {
         <thead>
             <tr>  
                 <th width="5%">#</th>
-                <th width="40%">Cliente</th>
-                <th width="25%">Producto</th>
+                <th width="30%">Cliente</th>
+                <th width="20%">Email</th>
+                <th width="15%">Producto</th>
                 <th width="10%">Fecha</th>
                 <th width="10%">Valor</th>                
                 <th width="10%"></th>                
@@ -79,17 +88,35 @@ function CotizacionsTable ({getComponent}) {
                     <tr key={item.id}>                      
                       <td>{item.id}</td>
                       <td>{item.Cliente.nombres}</td>
+                      <td>{item.Cliente.email}</td>                      
                       <td>{item.Producto.nombre}</td>
                       <td><Moment format="DD/MM/YYYY">{item.ivigencia}</Moment></td>                      
-                      <td>{new Intl.NumberFormat('de-DE',{style: "currency",currency:"USD"}).format(item.valor)}</td>                  
+                      <td>{new Intl.NumberFormat('de-DE',{style: "currency",currency:"USD"}).format(item.valor)}</td>  
+                      {item.contratado ? 
                       <td>
-                        <Button className={"btn btn-danger btn-xs"} onClick={() => {toggleModalView(item)}}>
+                        <Button className={"btn btn-danger btn-xs"} onClick={() => {toggleModalView(item,'pdf')}}>
+                              <FontAwesomeIcon icon={faFilePdf} />
+                        </Button>
+                        <Button className={"btn btn-success btn-xs"}>                              
+                              <FontAwesomeIcon icon={faCheckDouble} />
+                        </Button>                                          
+                      </td>
+                        :
+                                      
+                       <td>
+                        <Button className={"btn btn-danger btn-xs"} onClick={() => {toggleModalView(item,'pdf')}}>
                               <FontAwesomeIcon icon={faFilePdf} />
                         </Button>                  
-                        <Button className={"btn btn-success btn-xs"} onClick={() => {sendCotizacion(item)}}>
+                        <Button className={"btn btn-warning btn-xs"} onClick={() => {sendCotizacion(item)}}>
                               <FontAwesomeIcon icon={faPaperPlane} />
                         </Button>
+                        <Button className={"btn btn-success btn-xs"} onClick={() => {toggleModalView(item,'poliza')}}>
+                              <FontAwesomeIcon icon={faCheck} />
+                        </Button>
                       </td>
+                       
+
+                      }                                      
                     </tr>  
                     ))}
             </tbody>
@@ -110,7 +137,7 @@ function CotizacionsTable ({getComponent}) {
         <FontAwesomeIcon icon={faTimes} />
       </Button>
     <ModalBody>
-        <CotizacionView/>
+        {component}
     </ModalBody>
   </Modal>
  </>

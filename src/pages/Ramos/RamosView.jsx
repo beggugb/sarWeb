@@ -6,14 +6,6 @@ import RamosTable from '../Ramos/components/RamosTable'
 import RamoForm from './components/RamoForm'
 
 function RamosView () {     
-  const dispatch = useDispatch()
-  
-  useEffect(() =>{        
-    return () =>{             
-        dispatch(crudActions.setReset('RAMOS_RESET'))               
-    };
-  }, [dispatch]);
-  
   return (
     <>         
     <RamoForm/>

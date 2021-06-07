@@ -6,14 +6,6 @@ import ClausulasTable from '../Clausulas/components/ClausulasTable'
 import ClausulaForm from './components/ClausulaForm'
 
 function ClausulasView () {     
-  const dispatch = useDispatch()
-  
-  useEffect(() =>{        
-    return () =>{             
-        dispatch(crudActions.setReset('CLAUSULAS_RESET'))               
-    };
-  }, [dispatch]);
-  
   return (
     <>         
     <ClausulaForm/>

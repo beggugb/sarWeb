@@ -46,7 +46,15 @@ export function coberturas(state = initialState, action) {
             return {
               ...state,
               data: action.response
-            };                
+            };      
+      case "COBERTURAS_RESET_DATA":
+          return {
+            ...state,
+            data: [],
+            pagina: 0,
+            paginas: 0,
+            total: 0
+          };                
       case "COBERTURAS_RESET":
         return {
           ...state,

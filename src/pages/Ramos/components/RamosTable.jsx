@@ -22,15 +22,6 @@ function RamosTable ({getComponent}) {
     dispatch(crudActions.getData('RAMOS_DATA','ramos', page, num,'nombre','ASC'))  
   },[dispatch])
 
-  useEffect(() =>{    
-    if(!mount) {
-      setMount(true);
-      makeHttpRequestWithPage(1,12);
-    }
-     return () =>{            
-        /*dispatch(crudActions.getReset('CLIENTES_RESET'))*/
-    };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
 
   const delHandler = (pky) => {               
     dispatch(crudActions.deleteList('RAMOS_DATA','ramos',pky))            
@@ -38,6 +29,18 @@ function RamosTable ({getComponent}) {
   const itemHandler = (pky) => {                   
     dispatch(crudActions.getItem('RAMOS_ITEM','ramos',pky))
   }
+
+  useEffect(() =>{    
+    if(!mount) {
+      setMount(true);
+      makeHttpRequestWithPage(1,12);
+    }
+     return () =>{            
+        dispatch({type:'RAMOS_RESET_DATA'}) 
+    };
+  }, []);
+
+  
 
 
   return (    

@@ -7,7 +7,7 @@ import {
   } from "reactstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+
 
 import {    
   faEdit,
@@ -19,7 +19,7 @@ import { useCallback } from 'react';
 function CompaniasTable ({getComponent}) {          
   const dispatch = useDispatch()  
   const [mount, setMount] = useState(false)
-  const companias= useSelector(state => state.companias)
+  const {data, pagina, paginas, total} = useSelector(state => state.companias)
 
 
   
@@ -31,8 +31,11 @@ function CompaniasTable ({getComponent}) {
     if(!mount) {
       setMount(true);
       makeHttpRequestWithPage(1,12);
-    }    
-  }, [dispatch, makeHttpRequestWithPage, mount]);
+    }   
+     return () =>{             
+        dispatch({type:'COMPANIAS_RESET_DATA'})        
+    }; 
+  }, []);
 
     
   return (    
@@ -49,9 +52,9 @@ function CompaniasTable ({getComponent}) {
                 <th width="10%"></th>                
             </tr>
         </thead>
-        {companias.data && (
+        {data && (
             <tbody>
-                {companias.data.map((item) => (
+                {data.map((item) => (
                     <tr key={item.id}>                      
                       <td>{item.nombre}</td>
                       <td>{item.direccion}</td>
@@ -62,11 +65,7 @@ function CompaniasTable ({getComponent}) {
                         <Button className="btn btn-success btn-xs" onClick={() => {getComponent('editar','2',item.id)}} >
                           <FontAwesomeIcon icon={faEdit} />
                         </Button>
-                        <Link to={`/admin/membresia/${item.id}`}>
-                           <Button className={"btn btn-warning btn-xs"}>
-                              <FontAwesomeIcon icon={faTags} />
-                           </Button>
-                        </Link>
+                        
                       </td>
                     </tr>  
                     ))}
@@ -77,9 +76,9 @@ function CompaniasTable ({getComponent}) {
  <div className="navegador" >
     <Pagination
     makeHttpRequestWithPage={ makeHttpRequestWithPage }
-    total={companias.total}
-    paginas={companias.paginas}
-    current= {companias.pagina} 
+    total={total}
+    paginas={paginas}
+    current= {pagina} 
     pagina= {12}
     />
  </div>

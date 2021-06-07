@@ -7,11 +7,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import ModeloImagen from './ModeloImagen'
+import MarcaSelect from '../../Marcas/components/MarcaSelect'
 
 function ModeloForm () {     
   const dispatch = useDispatch()  
   const item = useSelector(state => state.modelos.item)  
-  const [enabled,setEnabled] = useState(true)
+  const mitem = useSelector(state => state.marcas.item)    
        
   const changeHandler = event => {    
   const { name, value } = event.target    
@@ -20,14 +21,15 @@ function ModeloForm () {
 
 const submitHandle = event => {       
     event.preventDefault()    
+    let iok = item
+    iok.marcaId = mitem.id
+    iok.tipoId = 1
     if(item.id)
-    {
-      
-      dispatch(crudActions.putList('MODELOS_ADD','modelos',item))            
+    { 
+      dispatch(crudActions.putUnit('modelos',iok))            
     }else{
-      dispatch(crudActions.createList('MODELOS_ADD','modelos',item))      
-    }    
-    setEnabled(false)    
+      dispatch(crudActions.createUnit('MODELOS_ADD','modelos',iok))      
+    }        
  }
 
 
@@ -38,12 +40,12 @@ const submitHandle = event => {
            <Col md={8}>
            <Form onSubmit={ submitHandle}>  
             <h5>Datos </h5>
-            <div className="sub-form">              
+            <div className="sub-form">                                     
                 <Row>
                     <Col md="2" className="subcajas">
                       <Label>Nombres :</Label>
                     </Col>                    
-                    <Col md="8" className="subcajas">
+                    <Col md="5" className="subcajas">
                       <FormGroup>                          
                           <Input
                             id="nombre"
@@ -54,8 +56,19 @@ const submitHandle = event => {
                             required                                              
                           />
                       </FormGroup>
-                    </Col>                    
+                    </Col>
                     <Col md="2" className="subcajas">
+                      <Label>Marca :</Label>
+                    </Col>                    
+                    <Col md="3" className="subcajas">
+                      <FormGroup>                          
+                      <MarcaSelect/>
+                      </FormGroup>  
+                    </Col>                    
+                </Row> 
+
+                <Row>                          
+                    <Col md="4" className="subcajas">
                       <FormGroup>                          
                       <Button 
                       type="submit"
@@ -65,14 +78,12 @@ const submitHandle = event => {
                       </Button>
                       </FormGroup>  
                     </Col>                    
-                </Row>                               
+                </Row>                              
             </div>    
             </Form>   
             </Col>
-            <Col md={4}>
-            { enabled ?
-              <ModeloImagen />: null
-            }
+            <Col md={4}>            
+              <ModeloImagen />
             </Col>
           </Row>  
         </div>               

@@ -8,7 +8,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {    
-  faEdit, faTrash
+  faEdit
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from '../../../components/Navigations/Pagination'
 import { useCallback } from 'react';
@@ -22,22 +22,19 @@ function ModelosTable ({getComponent}) {
     dispatch(crudActions.getData('MODELOS_DATA','modelos', page, num,'nombre','ASC'))  
   },[dispatch])
 
+   
+
   useEffect(() =>{    
     if(!mount) {
       setMount(true);
       makeHttpRequestWithPage(1,12);
     }
      return () =>{            
-        /*dispatch(crudActions.getReset('CLIENTES_RESET'))*/
+        dispatch({type:'MODELOS_RESET_DATA'})    
     };
-  }, [dispatch, makeHttpRequestWithPage, mount]);
+  }, []);
 
-  const delHandler = (pky) => {               
-    dispatch(crudActions.deleteList('MODELOS_DATA','modelos',pky))            
-  }
-  const itemHandler = (pky) => {                   
-    dispatch(crudActions.getItem('MODELOS_ITEM','modelos',pky))
-  }
+  
 
 
   return (    
@@ -46,7 +43,8 @@ function ModelosTable ({getComponent}) {
         <Table className="table-simple">
         <thead>
             <tr>  
-                <th width="90%">Nombre</th>                
+                <th width="50%">Nombre</th>
+                <th width="40%">Marca</th> 
                 <th width="10%"></th>                             
             </tr>
         </thead>
@@ -54,14 +52,12 @@ function ModelosTable ({getComponent}) {
             <tbody>
                 {data.map((item) => (
                     <tr key={item.id}>                      
-                      <td>{item.nombre}</td>                      
+                      <td>{item.nombre}</td>
+                      <td>{item.Marca.nombre}</td>                      
                       <td className="text-center">
-                      <Button className="btn btn-success btn-xs" onClick={() => {itemHandler(item.id)}} >
-                      <FontAwesomeIcon icon={faEdit} />
-                      </Button>
-                      <Button className="btn btn-danger btn-xs" onClick={() => {delHandler(item.id)}} >
-                      <FontAwesomeIcon icon={faTrash} />
-                      </Button>
+                       <Button className="btn btn-success btn-xs" onClick={() => {getComponent('editar','2',item.id)}} >
+                          <FontAwesomeIcon icon={faEdit} />
+                        </Button>                      
                       </td>
                     </tr>  
                     ))}

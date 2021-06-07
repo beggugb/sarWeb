@@ -11,9 +11,9 @@ function getItem(payload, pky) {
   return (dispatch) => {
     crudService
       .getItem(payload, pky)
-      .then((response) => {                       
-        
-        dispatch(gitem('PRODUCTOSCOMPANIA_LISTA', response.result.companias));
+      .then((response) => {                               
+        console.log(response)
+        /*dispatch(gitem('PRODUCTOSCOMPANIA_LISTA', response.result.companias));*/
         dispatch(gitem('COTIZACIONES_ITEM',response.result.cotizacion));
         dispatch(gitem('TASAS_LISTA', response.result.tasas));
       })

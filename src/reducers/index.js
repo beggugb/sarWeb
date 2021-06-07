@@ -14,22 +14,33 @@ import { productos } from "./productos.reducers";
 import { productoscompania } from "./productoscompania.reducers";
 import { clausulasproductos } from "./clausulasproductos.reducers";
 import { coberturasproductos } from "./coberturasproductos.reducers";
-
-
 import { productoclausulas } from "./productoclausulas.reducers";
 import { productocoberturas } from "./productocoberturas.reducers";
 import { tasas } from "./tasas.reducers";
 import { tipos } from "./tipos.reducers";
 import { marcas } from "./marcas.reducers";
 import { modelos } from "./modelos.reducers";
-
 import { cotizaciones } from "./cotizaciones.reducers";
+import { agentes } from "./agentes.reducers";
+import { polizas } from "./polizas.reducers";
+import { polizascoberturas } from "./polizascoberturas.reducers";
+import { polizasclausulas } from "./polizasclausulas.reducers";
+
+import { notas } from "./notas.reducers";
+import { pagos } from "./pagos.reducers";
+
 
 
 const rootReducer = combineReducers({
   users,  
   informes,  
+  polizas,
+  notas,
+  pagos,
+  polizascoberturas,
+  polizasclausulas,
   productos,
+  agentes,
   cotizaciones,
   coberturas,
   clausulas,

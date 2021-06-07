@@ -7,7 +7,11 @@ const initialState = {
         id:0,
         nombre: '',
         tipoId:0,
-        marcaId:0
+        marcaId:0,
+        Marca:{
+          id:'',
+          nombres:''
+        }
     }    
   };
   
@@ -24,13 +28,9 @@ export function modelos(state = initialState, action) {
       case "MODELOS_ADD":
         return {
           ...state,
-          data: action.response.data,
-            pagina: action.response.pagina,
-            paginas: action.response.paginas,
-            total: action.response.total,
-            item: initialState.item
+          item: action.response.modelo         
         };
-      case "MODELOS_ITEM":
+      case "MODELOS_SET_ITEM":
           return {
             ...state,
             item: action.response
@@ -62,6 +62,14 @@ export function modelos(state = initialState, action) {
           paginas: 0,
           total: 0
         };
+      case "MODELOS_RESET_DATA":
+        return {
+          ...state,          
+          data: [],
+          pagina: 0,
+          paginas: 0,
+          total: 0
+        };  
       default:
         return state;
     }

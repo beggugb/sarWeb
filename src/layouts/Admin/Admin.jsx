@@ -16,6 +16,9 @@ import Configuracion from "../../pages/Configuracion/ConfiguracionView.jsx";
 import Productos from "../../pages/Productos/ProductosView.jsx";
 import Cotizador from "../../pages/Cotizador/CotizadorView.jsx";
 import Cotizaciones from "../../pages/Cotizaciones/CotizacionesView.jsx";
+import Agentes from "../../pages/Agentes/AgentesView.jsx";
+import Polizas from "../../pages/Polizas/PolizasView.jsx";
+import Informes from "../../pages/Informes/InformesView"
 
 import Error from "../Error.jsx";
 
@@ -58,12 +61,13 @@ function Admin (){
         return Cotizador;    
       case "Cotizaciones":
         return Cotizaciones;      
-      /*case "Cajas":
-        return Cajas;
-      
+      case "Agentes":
+        return Agentes;
+      case "Polizas":
+        return Polizas;        
       case "Informes":
         return Informes;
-      case "Articulos":
+      /*case "Articulos":
         return Articulos;            
       case "Tpv":
         return Tpv;            */
